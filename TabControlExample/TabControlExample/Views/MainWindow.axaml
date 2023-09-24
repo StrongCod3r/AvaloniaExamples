@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TabControlExample.ViewModels"
+        xmlns:pages="using:TabControlExample.Pages"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="450"
+        x:Class="TabControlExample.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="TabControlExample"
+		WindowStartupLocation="CenterScreen"
+		Width="500" Height="450">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<StackPanel>
+		<!-- TabControl Static -->
+		<TabControl Margin="5">
+			<TabItem Header="Tab 1">
+				<TextBlock Margin="5">This is tab 1 content</TextBlock>
+			</TabItem>
+			<TabItem Header="Tab 2">
+				<TextBlock Margin="5">This is tab 2 content</TextBlock>
+			</TabItem>
+			<TabItem Header="Tab 3">
+				<TextBlock Margin="5">This is tab 3 content</TextBlock>
+			</TabItem>
+		</TabControl>
+
+		<!-- TabControl Dynamic -->
+		<Button Command="{Binding AddTab}">Add Tab</Button>
+		<Viewbox DataContext="{Binding TabControlPage}" Stretch="UniformToFill">
+			<pages:TabControlPage />
+		</Viewbox>
+	</StackPanel>
+
+</Window>

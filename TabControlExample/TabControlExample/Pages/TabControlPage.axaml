@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:m="using:TabControlExample.Models"
+			 xmlns:vm="using:TabControlExample.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="vm:TabControlPageViewModel"
+			 x:CompileBindings="True"
+             x:Class="TabControlExample.Pages.TabControlPage">
+	
+	<TabControl
+		ItemsSource="{Binding Tabs}">
+		<TabControl.ItemTemplate>
+			<DataTemplate>
+				<TextBlock Text="{Binding Header, x:DataType=m:TabControlModel}" />
+			</DataTemplate>
+		</TabControl.ItemTemplate>
+		<TabControl.ContentTemplate>
+			<DataTemplate>
+				<DockPanel LastChildFill="True">
+					<TextBlock Text="This is content of selected tab" DockPanel.Dock="Top" FontWeight="Bold" />
+					<TextBlock Text="{Binding Content, x:DataType=m:TabControlModel}" />
+				</DockPanel>
+			</DataTemplate>
+		</TabControl.ContentTemplate>
+		<TabControl.Styles>
+			<Style Selector="TabItem" x:DataType="m:TabControlModel">
+				<Setter Property="IsEnabled" Value="{Binding IsEnabled, x:DataType=m:TabControlModel}"/>
+			</Style>
+		</TabControl.Styles>
+	</TabControl>
+	
+</UserControl>
